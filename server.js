@@ -17,7 +17,10 @@ const storage = multer.diskStorage({
     },
   });
 
-const upload = multer({ dest: __dirname + "/public/images"});
+const upload = multer({ storage: storage });
+
+// const upload = multer({ dest: __dirname + "/public/images"});
+
 
 app.get('/',(req, res)=>{
     res.sendFile(__dirname + "/index.html");
@@ -338,9 +341,8 @@ app.post("/api/crafts", upload.single("image"), (req, res) => {
         supplies: req.body.supplies.split(","),
     };
     
-
     if(req.file){
-        craft.img = "images/" + req.file.filename;
+        craft.image = req.file.filename;
     };
 
     crafts.push(craft);
