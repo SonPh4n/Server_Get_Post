@@ -1,7 +1,7 @@
 const getJSON = async () => {
     try {
-        // let response = await fetch("http://localhost:3001/api/crafts");
-        let response = await fetch("https://server-get-post-5mjx.onrender.com/api/crafts"); // Alternative URL
+        let response = await fetch("http://localhost:3001/api/crafts");
+        // let response = await fetch("https://server-get-post-5mjx.onrender.com/api/crafts"); // Alternative URL
         return await response.json();
     } catch (error) {
         console.log("error retrieving json");
@@ -157,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("addSupplyButton").addEventListener("click", function() {
         const newSupplyInput = document.createElement("input");
         newSupplyInput.type = "text";
-        // newSupplyInput.name = "supplies";
         newSupplyInput.required = true;
     
         const breakLine = document.createElement("br");
@@ -165,6 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
         moresupplies.append(newSupplyInput);
         moresupplies.append(breakLine);
     });
+
+    document.getElementById("cancelbutton").addEventListener("click", function() {
+        resetForm();
+        document.getElementById("add-edit-modal").style.display = "none";
+    });
+    
     
     window.onclik = function(event) {
         if (event.target == document.getElementById("myModal")) {

@@ -13,7 +13,21 @@ font-family: Arial;
 background-color: bisque;
 }
 
-.header {
+#add-link {
+  font-size: 25px;
+  text-decoration: none; 
+  color: rgb(175, 0, 250); 
+  padding: 5px; 
+  border-radius: 25%; 
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+#add-link:hover {
+  background-color: rgb(175, 0, 250); 
+  color: white; 
+}
+
+header {
 text-align: center;
 padding: 32px;
 }
