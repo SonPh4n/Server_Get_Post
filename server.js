@@ -324,7 +324,7 @@ app.get("/api/crafts", (req, res)=> {
 });
 
 
-app.post("/api/crafts", upload.single("img"), (req, res) => {
+app.post("/api/crafts", upload.single("image"), (req, res) => {
     const result = validateCrafts(req.body);
     if(result.error){
         res.status(400).send(result.error.details[0].message);

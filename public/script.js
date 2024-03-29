@@ -31,8 +31,12 @@ const addEditForm = async (e) => {
 
     await response.json();
     resetForm();
-    document.getElementById("add-edit-form").style.display = "none";
-    showCrafts();
+
+    const craftDiv = document.getElementById("craft-list");
+        craftDiv.innerHTML = '';
+
+    document.getElementById("add-edit-modal").style.display = "none";
+    showCrafts(); 
 };
 
 const getSupplies = () => {
@@ -71,12 +75,17 @@ const showCrafts = async () => {
     }
 
     craftJSON.forEach((craft, index) => {
-        let column = columns[index % 4];
-        let img = document.createElement("img");
-        img.src = "images/" + craft.image;
-        img.onclick = () => openModalWithCraft(craft);
-        column.append(img);
+        if (!craft) {
+            console.warn(`Undefined craft object at index: ${index}`);
+        } else {
+            let column = columns[index % 4];
+            let img = document.createElement("img");
+            img.src = "images/" + craft.image;
+            img.onclick = () => openModalWithCraft(craft);
+            column.append(img);
+        }
     });
+    
 };
 
 // Function to open the craft details modal
@@ -94,7 +103,7 @@ function openModalWithCraft(craft) {
     var imgDiv = document.createElement("div");
     imgDiv.className = "modal-img-container";
     var img = document.createElement("img");
-    img.src="images/" + craft.image; 
+    img.src="/images/" + craft.image; 
     imgDiv.append(img);
     flexContainer.append(imgDiv);
 
@@ -147,17 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("addSupplyButton").addEventListener("click", function() {
         const newSupplyInput = document.createElement("input");
         newSupplyInput.type = "text";
-        newSupplyInput.name = "supplies";
+        // newSupplyInput.name = "supplies";
         newSupplyInput.required = true;
     
         const breakLine = document.createElement("br");
     
-        
         moresupplies.append(newSupplyInput);
         moresupplies.append(breakLine);
     });
     
-    window.onclick = function(event) {
+    window.onclik = function(event) {
         if (event.target == document.getElementById("myModal")) {
             document.getElementById("myModal").style.display = "none";
         } else if (event.target == document.getElementById("add-edit-modal")) {
@@ -174,7 +182,7 @@ window.onload = () => {
 };
 
 
-document.getElementById("img").onchange = (e) => {
+document.getElementById("image").onchange = (e) => {
     const prev = document.getElementById("img-prev");
 
     //they didn't pick an image
