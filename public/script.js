@@ -1,7 +1,7 @@
 const getJSON = async () => {
     try {
-        let response = await fetch("http://localhost:3001/api/crafts");
-        // let response = await fetch("https://server-get-post-5mjx.onrender.com/api/crafts"); // Alternative URL
+        // let response = await fetch("http://localhost:3001/api/crafts");
+        let response = await fetch("https://server-get-post-5mjx.onrender.com/api/crafts"); // Alternative URL
         return await response.json();
     } catch (error) {
         console.log("error retrieving json");
